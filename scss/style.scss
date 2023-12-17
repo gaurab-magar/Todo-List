@@ -1,0 +1,71 @@
+body {
+    background-color: #f0f0f0; /* Set your initial background color */
+    transition: background-color 0.5s;
+}
+
+.screen{
+    height: 100vh;
+    width: 100%;
+}
+.bg{
+    background: url('../images/bg-desktop-dark.jpg') center center no-repeat;
+    height: 40vh;
+}
+.size{
+    width: 360px;
+}
+.scale{
+    margin-top: -2rem;
+}
+ul li{
+    list-style: none;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: opacity 2s ease;
+}
+ul li:before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    left: 10px;
+    border: 2px solid whitesmoke;    
+}
+ul li.checked{
+    color: #555;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+ul li.checked::before{
+   background: url(../images/icon-check.svg) center center no-repeat;
+}
+ul li span{
+    position: absolute;
+    right: 5px;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    padding: 0 12px 4px 12px;
+    border-radius: 50%;
+    background: #f46447;
+    transition: transform 0.3s ease;
+}
+ul li span:hover{
+    transform: rotate(180deg);
+}
+
+#sun{
+    display: none;
+}
+#moon{
+    display: inline;
+}

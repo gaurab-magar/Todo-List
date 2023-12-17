@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-List</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/fontawesome.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="bg-light" class="container  screen">
+        <div class="row bg d-flex flex-column align-items-center justify-content-center gy-3">
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <h1 class="text-white me-5">TODO-List</h1>
+                <i id="moon" class="fas fa-moon fa-2x text-white"> </i>
+                <i id="sun" class="fas fa-sun fa-2x text-warning"></i>
+            </div>
+            <div class="col-md-4">
+                <div class="btn-group">
+                    <input type="text" id="input-value" class="form-control rounded-0 px-5">
+                    <button id="btn" class="btn btn-primary rounded-0 px-4 py-2 fw-bold">ADD</button>
+                </div>
+            </div>
+        </div>
+       <div class="row d-flex justify-content-center scale">
+        <div class="card border-0 shadow-lg bg-secondary size">
+            <div class="card-body">
+                <ul id="list-container">
+                    <li class="checked">i have to wake up</li>
+                </ul>
+            </div>
+        </div>
+       </div>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/style.js"></script>
+</body>
+</html>
