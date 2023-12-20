@@ -9,31 +9,55 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div id="bg-light" class="container  screen">
-        <div class="row bg d-flex flex-column align-items-center justify-content-center gy-3">
-            <div class="col-md-12 d-flex align-items-center justify-content-center">
-                <h1 class="text-white me-5">TODO-List</h1>
-                <i id="moon" class="fas fa-moon fa-2x text-white"> </i>
-                <i id="sun" class="fas fa-sun fa-2x text-warning"></i>
-            </div>
-            <div class="col-md-4">
-                <div class="btn-group">
-                    <input type="text" id="input-value" class="form-control rounded-0 px-5">
-                    <button id="btn" class="btn btn-primary rounded-0 px-4 py-2 fw-bold">ADD</button>
+    <div class="container-fluid bg-dark bg">
+        <div class="card rounded-4">
+            <div class="card-body">
+                <div class="container d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="text-center fs-4 fw-bold mb-4 text-uppercase">currency App</h5>
+                <div class="container my-3">
+                    <input id="country" type="text" class="form-control" placeholder="Enter the Amount here">
+                </div>
+                <div class="container d-flex justify-content-between align-items-center my-3">
+                    <div class="dropdown">
+                        <button name="from" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                        <img src="https://flagsapi.com/US/flat/64.png"/>
+                          US
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#"><img src="https://flagsapi.com/US/flat/64.png"/>Option 1</a>
+                          <a class="dropdown-item" href="#">Option 2</a>
+                          <a class="dropdown-item" href="#">Option 3</a>
+                        </div>
+                    </div>
+
+                    <div class="span">
+                        <i class="fa fa-exchange"></i>
+                    </div>
+
+                    <div class="dropdown">
+                        <button name="to" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                        <img src="https://flagsapi.com/NP/flat/64.png"/>
+                          Nepal
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#"><img src='' alt=""> Option 1</a>
+                          <a class="dropdown-item" href="#">Option 2</a>
+                          <a class="dropdown-item" href="#">Option 3</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center d-grid">
+                    <button onclick="convert()" class="btn btn-primary my-3 fw-bold">Convert</button>
+                </div>
+                <div class="container text-center">
+                    <p class="fs-4 fst-italic text-muted">Result: <span id="result"></span></p>
+                </div>
                 </div>
             </div>
         </div>
-       <div class="row d-flex justify-content-center scale">
-        <div class="card border-0 shadow-lg bg-secondary size">
-            <div class="card-body">
-                <ul id="list-container">
-                    <li class="checked">i have to wake up</li>
-                </ul>
-            </div>
-        </div>
-       </div>
     </div>
+    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/style.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/style.js"></script>
 </body>
 </html>

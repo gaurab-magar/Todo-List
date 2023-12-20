@@ -1,66 +1,58 @@
-let input = document.getElementById('input-value')
-let button = document.getElementById('btn')
-let output = document.getElementById('list-container')
-let moonIcon = document.getElementById('moon')
-let sunIcon = document.getElementById('sun')
-let bgChange = document.getElementById('bg-light')
+// function convert(){
+//     let amount = document.getElementById("country").value;
+//     console.log(amount)
+// }
+const BASE_URL ="https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/jpy.json";
+const dropdowns = document.querySelector(".dropdown-menu a");
+const fromCurr = document.querySelector('.from select');
+const toCurr = document.querySelector('.to select');
+const msg = document.querySelector('#result');
 
 
-
-
-moonIcon.addEventListener('click', function () {
-    let body = document.body;
-    let isDarkMode = body.classList.toggle('dark-mode');
-
-    let currentColor = window.getComputedStyle(body, null).getPropertyValue('background-color');
-    body.style.backgroundColor = currentColor === 'rgb(240, 240, 240)' ? '#000000' : '#f0f0f0';
-
-    sunIcon.style.display = isDarkMode ? 'none' : 'inline';
-    moonIcon.style.display = isDarkMode ? 'inline' : 'none';
-});
-
-
-
-
-button.addEventListener('click',function(){
-    let value = input.value;
-    if(value === ""){
-        alert('Please enter a value')
-    }else{
-        let li = document.createElement('li')
-        let span = document.createElement('span');
-        li.textContent = value;
-        output.appendChild(li);
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
-    }
-    input.value = "";
-    saveData();
+window.addEventListener('load', ()=>{
+    updateExchangeRate();
 })
-output.addEventListener('click',function(e){
-    if(e.target.tagName === "LI"){
-        e.target.classList.toggle("checked");
-        saveData();
-    }else if(e.target.tagName === "SPAN"){
-        e.target.parentElement.remove();
-        saveData();
+for(let select of dropdowns) {
+    for (code in countryList){
+        let newOption = document.createElement('a');
+        newOption.classList = 'dropdown-item';
+        newOption.innerHTML = code;
+        newOption.value = code;
+        if(select.name === "from" && currCode === "USD"){
+            newOption.selected = "selected";
+        }else if(select.name === "to" && currCode === "INR"){
+            newOption.selected = "selected";
+        }
+        select.append(newOption);
     }
-}, false);
-
-// Function to save tasks to local storage
-function saveData() {
-    let tasks = Array.from(output.children).map(task => task.textContent);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    select.addEventListener('change',(evt)=>{
+        updateFlag(evt.target);
+    })
+}
+const updateFlag = (element) => {
+    let currCode = element.value;
+    let countryCode = countryList[currCode];
+    let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+    let img = element.parentElement.querySelector('img');
+    img.src = newSrc;
+    
+}
+function convert(evt){
+    evt.preventDefault();
+    updateExchangeRate();
 }
 
-// Function to load tasks from local storage
-function showTasks() {
-    let data = localStorage.getItem('tasks');
-    if (data) {
-        let tasks = JSON.parse(data);
-        tasks.forEach(task => createTask(task));
+const updateExchangeRate = async ()=>{
+    let amount = document.querySelector("input");
+    let amountValue = amount.value;
+    if(amountValue == "" || amountValue < 1){
+        amountValue = 1;
+        amount.value = '1';
     }
+    const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+    let response =  fetch(URL)
+    let data = response.json();
+    let rate = data[toCurr.value.toLowerCase()];
+    let finalAmount = amount * rate;
+    msg.textContent = finalAmount;
 }
-
-// Initial setup: load tasks from local storage
-showTasks();
